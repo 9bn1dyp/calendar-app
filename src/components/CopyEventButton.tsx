@@ -10,10 +10,14 @@ export function CopyEventButton({ eventId, clerkUserId, ...buttonProps  } : Omit
     eventId: string; clerkUserId: string
 } ) {   
 
+    // track state of copy
     const [copyState, setCopyState] = useState<CopyState>("idle")
+    // component form lucid, diff icons depending on state
     const CopyIcon = getCopyIcon(copyState)
 
     return (
+        // onclick set clipboard to event link, then timeout and switch copy state back to idle
+        // render the icon from copyIcon and text form func below
         <Button {...buttonProps} onClick={() => {
             navigator.clipboard.writeText(`${location.origin}/book/${clerkUserId}/${eventId}`)
             .then(() => {
@@ -30,6 +34,7 @@ export function CopyEventButton({ eventId, clerkUserId, ...buttonProps  } : Omit
     )
 }
 
+// get Icon based on copy state
 function getCopyIcon(copyState: CopyState) {
     switch (copyState) {
         case "idle":
@@ -41,6 +46,7 @@ function getCopyIcon(copyState: CopyState) {
     }
 }
 
+// copy text based on stateso 
 function getChildren(copyState: CopyState) {
     switch (copyState) {
         case "idle":

@@ -7,6 +7,7 @@ import { auth } from '@clerk/nextjs/server'
 import 'server-only'
 import { z } from 'zod'
 import { redirect } from "next/navigation"
+import { and, eq } from 'drizzle-orm'
 
 export async function createEvent(unsafeData: z.infer<typeof eventFormSchema>) : 
 Promise<{ error: boolean } | undefined> {
@@ -19,6 +20,32 @@ Promise<{ error: boolean } | undefined> {
     }
 
     await db.insert(EventTable).values({ ...data, clerkUserId: userId })
+
+    redirect("/events")
+}
+
+export async function updateEvent(
+    id: string,
+    unsafeData: z.infer<typeof eventFormSchema>) : 
+Promise<{ error: boolean } | undefined> {
+    
+    const { userId } = auth()
+    const { success, data } = eventFormSchema.safeParse(unsafeData)
+    
+    if (!success || userId == null) {
+        return { error: true }
+    }
+
+
+    const { rowCount } = await db
+        .update(EventTable)
+        .set({...data})
+        .where(and(eq(EventTable.id, id), eq(EventTable.clerkUserId, userId)))
+
+        if (rowCount === 0) {
+            return { error: true }
+        }
+
 
     redirect("/events")
 }

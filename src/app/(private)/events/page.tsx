@@ -14,7 +14,7 @@ export default async function EventsPage() {
   const { userId, redirectToSignIn } = auth()
   if (userId == null) return redirectToSignIn
 
-  /*  */
+  /* find events tied to clerk Id and return sorted events by date */
   const events = await db.query.EventTable.findMany({
     where: ({ clerkUserId }, { eq }) => eq(clerkUserId, userId),
     orderBy: ({ createdAt }, { desc }) => desc(createdAt)
@@ -35,6 +35,7 @@ export default async function EventsPage() {
           ))}
         </div>
       ) : (
+        // if no events render defualt page
         <div className="flex flex-col items-center gap-4">
           <CalendarRange className='size-16 mx-auto'/>
           You do not have any events yet. Create your first event to get started!
@@ -49,7 +50,7 @@ export default async function EventsPage() {
     </>
   )
 }
-
+// event card types
 type EventCardProps = {
 
   id: string
@@ -69,6 +70,8 @@ function EventCard({
   clerkUserId
 } : EventCardProps) {
   return (
+    // if inactive grey out
+    // CopyEventButton from /components
     <Card className={cn("flex flex-col", !isActive && 'border-secondary/50')}>
       <CardHeader className={cn(!isActive && 'opacity-50')}>
         <CardTitle>{name}</CardTitle>
