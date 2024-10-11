@@ -42,9 +42,32 @@ Promise<{ error: boolean } | undefined> {
         .set({...data})
         .where(and(eq(EventTable.id, id), eq(EventTable.clerkUserId, userId)))
 
-        if (rowCount === 0) {
-            return { error: true }
-        }
+    if (rowCount === 0) {
+        return { error: true }
+    }
+
+
+    redirect("/events")
+}
+
+export async function deleteEvent(
+    id: string) : 
+Promise<{ error: boolean } | undefined> {
+    
+    const { userId } = auth()
+    
+    if (userId == null) {
+        return { error: true }
+    }
+
+
+    const { rowCount } = await db
+        .delete(EventTable)
+        .where(and(eq(EventTable.id, id), eq(EventTable.clerkUserId, userId)))
+
+    if (rowCount === 0) {
+        return { error: true }
+    }
 
 
     redirect("/events")
