@@ -14,3 +14,14 @@ export function formatEventDescription(durationInMinutes: number) {
     // return concat hrs and mins
     return `${hoursString} ${minutesString}`
 }
+
+export function formatTimeZoneOffset(timezone: string) {
+    return (
+        new Intl.DateTimeFormat(undefined, {
+            timeZone: timezone,
+            timeZoneName: "shortOffset"
+        })
+        .formatToParts(new Date())
+        .find(part => part.type == "timeZoneName")?.value
+    )
+}

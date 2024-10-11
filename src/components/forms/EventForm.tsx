@@ -164,10 +164,12 @@ eventFormSchema>>({
                             </AlertDialogContent>
                         </AlertDialog>
                     )}
-                    <Button type='button'>
+                    <Button disabled={isDeletePending || form.formState.isSubmitting} 
+                    type='button'>
                         <Link href="/events">Cancel</Link>
                     </Button>
-                    <Button type='submit'>Save</Button>
+                    <Button disabled={isDeletePending || form.formState.isSubmitting} 
+                    type='submit'>Save</Button>
                 </div>
             </form>
         </Form>
