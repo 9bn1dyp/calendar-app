@@ -74,7 +74,7 @@ type EventCardProps = {
         )}
         <CardFooter className="flex justify-end gap-2 mt-auto">
           <Button asChild>
-            <Link href={`/book/${clerkUserId}/${id}/edit`}>Select</Link>
+            <Link href={`/book/${clerkUserId}/${id}`}>Select</Link>
           </Button>
         </CardFooter>
       </Card>
