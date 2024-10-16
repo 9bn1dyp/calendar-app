@@ -219,7 +219,7 @@ meetingFormSchema>>({
                     type='button' asChild variant='outline'>
                         <Link href={`/book/${clerkUserId}`}>Cancel</Link>
                     </Button>
-                    <Button disabled={form.formState.isSubmitting} 
+                    <Button className='btn-blue' disabled={form.formState.isSubmitting} 
                     type='submit'>Schedule</Button>
                 </div>
             </form>

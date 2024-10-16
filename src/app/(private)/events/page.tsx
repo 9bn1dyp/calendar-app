@@ -26,7 +26,7 @@ export default async function EventsPage() {
     <>
       <div className="flex gap-4 items-baseline">
           <h1 className="text-3xl lg:text-4xl xl:text-5l font-semibold mb-6">Events</h1>
-          <Button asChild>
+          <Button asChild className="btn-blue">
             <Link href="/events/new"><CalendarPlus className="mr-4 size-6"/> New Event</Link>
           </Button>
       </div>
@@ -41,7 +41,7 @@ export default async function EventsPage() {
         <div className="flex flex-col items-center gap-4">
           <CalendarRange className='size-16 mx-auto'/>
           You do not have any events yet. Create your first event to get started!
-          <Button size="lg" className="text-lg" asChild>
+          <Button size="lg" className="text-lg btn-blue" asChild>
             <Link href="/events/new">
               <CalendarPlus className="mr-4 size-6"/> 
               New Event
@@ -86,7 +86,7 @@ function EventCard({
       )}
       <CardFooter className="flex justify-end gap-2 mt-auto">
         {isActive && (<CopyEventButton variant="outline" eventId={id} clerkUserId={clerkUserId}/>)}
-        <Button asChild>
+        <Button asChild className="btn-blue">
           <Link href={`/events/${id}/edit`}>Edit</Link>
         </Button>
       </CardFooter>

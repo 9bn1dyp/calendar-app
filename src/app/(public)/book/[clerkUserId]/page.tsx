@@ -32,8 +32,8 @@ export default async function BookingPage({
             <div className="text-4xl md:text-5xl font-semibold mb-4 text-center">
                 {fullName}
             </div>  
-            <div className="text-muted-foreground mb-6 max-w-sm mx-auto text-center">
-                Welcome to my scheduling page. Please follow the instructions to add an
+            <div className="text-muted-foreground mb-6 max-w-md mx-auto text-center">
+                Welcome to {fullName}'s scheduling page. Please follow the instructions to add an
                 event to my calendar.
             </div>
             <div className="grid gap-4 grid-cols-[repeat(auto-fill,minmax(300px,1fr))]">
@@ -75,7 +75,7 @@ type EventCardProps = {
           <CardContent>{description}</CardContent>
         )}
         <CardFooter className="flex justify-end gap-2 mt-auto">
-          <Button asChild>
+          <Button className="btn-blue" asChild>
             <Link href={`/book/${clerkUserId}/${id}`}>Select</Link>
           </Button>
         </CardFooter>

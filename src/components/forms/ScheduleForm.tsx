@@ -185,7 +185,7 @@ export function ScheduleForm({ schedule }: {
 
 
                 <div className='flex gap-2 justify-end'>
-                    <Button disabled={form.formState.isSubmitting} type='submit'>Save</Button>
+                    <Button className="btn-blue" disabled={form.formState.isSubmitting} type='submit'>Save</Button>
                 </div>
             </form>
         </Form>
